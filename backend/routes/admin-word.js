@@ -16,14 +16,6 @@ router.get('/today', (req, res) => {
     .catch(err => setResponse(res, 400, false, { error: err.message }));
 });
 
-// only admin users has access to fthe following routes
-router.use('*', (req, res, next) => {
-  if (req.user && req.user.role === 'Admin') {
-    return next();
-  }
-  return setResponse(res, 401, false, { error: 'Only Admin users have access' });
-});
-
 // get words of the day
 router.get('/', (req, res) => {
   // return words of the day between start and end dates in descending order
@@ -87,6 +79,14 @@ router.post('/new', (req, res) => {
     })
     .then(word => setResponse(res, 200, true))
     .catch(err => setResponse(res, 400, false, { error: err.message }));
+});
+
+// only admin users has access to fthe following routes
+router.use('*', (req, res, next) => {
+  if (req.user && req.user.role === 'Admin') {
+    return next();
+  }
+  return setResponse(res, 401, false, { error: 'Only Admin users have access' });
 });
 
 // update word of the day

@@ -62,14 +62,6 @@ router.get('/:studentId', (req, res) => {
     .catch(err => setResponse(res, 400, false, { error: err.message }));
 });
 
-// only admin users has access
-router.use('*', (req, res, next) => {
-  if (req.user && req.user.role === 'Admin') {
-    return next();
-  }
-  return setResponse(res, 401, false, { error: 'Only Admin users have access' });
-});
-
 // get list of all students, or filtered by status or cohort
 router.get('/', (req, res) => {
   // const query = {};
@@ -84,6 +76,14 @@ router.get('/', (req, res) => {
       return setResponse(res, 200, true, { students });
     })
     .catch(err => setResponse(res, 400, false, { error: err.message }));
+});
+
+// only admin users has access
+router.use('*', (req, res, next) => {
+  if (req.user && req.user.role === 'Admin') {
+    return next();
+  }
+  return setResponse(res, 401, false, { error: 'Only Admin users have access' });
 });
 
 // create new student inside each cohort

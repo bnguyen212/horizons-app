@@ -6,11 +6,11 @@ import setResponse from '../setResponse';
 const router = express.Router();
 
 // get list of all active cohorts
-router.get('/active', (req, res) => {
-  Cohort.find({ status: 'Active' }).sort({ name: 1 }).populate('createdBy.user', 'username')
-    .then(cohorts => setResponse(res, 200, true, { cohorts }))
-    .catch(err => setResponse(res, 400, false, { error: err.message }));
-});
+// router.get('/active', (req, res) => {
+//   Cohort.find({ status: 'Active' }).sort({ name: 1 }).populate('createdBy.user', 'username')
+//     .then(cohorts => setResponse(res, 200, true, { cohorts }))
+//     .catch(err => setResponse(res, 400, false, { error: err.message }));
+// });
 
 // get all students in a cohort
 router.get('/:cohortId', (req, res) => {
@@ -81,19 +81,19 @@ router.get('/:cohortId/pairs', (req, res) => {
     .catch(err => setResponse(res, 400, false, { error: err.message }));
 });
 
+// get list of all cohorts
+router.get('/', (req, res) => {
+  Cohort.find().sort({ status: 1, 'createdBy.time': -1 }).populate('createdBy.user archivedBy.user', 'username')
+    .then(cohorts => setResponse(res, 200, true, { cohorts }))
+    .catch(err => setResponse(res, 400, false, { error: err.message }));
+});
+
 // only admin users has access to fthe following routes
 router.use('*', (req, res, next) => {
   if (req.user && req.user.role === 'Admin') {
     return next();
   }
   return setResponse(res, 401, false, { error: 'Only Admin users have access' });
-});
-
-// get list of all cohorts
-router.get('/', (req, res) => {
-  Cohort.find().sort({ status: 1, 'createdBy.time': -1 }).populate('createdBy.user archivedBy.user', 'username')
-    .then(cohorts => setResponse(res, 200, true, { cohorts }))
-    .catch(err => setResponse(res, 400, false, { error: err.message }));
 });
 
 // create new cohort

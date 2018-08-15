@@ -104,7 +104,8 @@ export default class PairsTab extends Component {
     .catch(err => console.log(err.message))
   }
 
-  deletePair = (pairId, date) => {
+  deletePair = (e, pairId, date) => {
+    e.stopPropagation();
     if (date < this.state.today) return alert('Cannot delete a pair in the past')
     if (!window.confirm(`Are you sure you want to delete this pair?`)) return
     fetch('/admin/pair/'+pairId, {
@@ -126,7 +127,8 @@ export default class PairsTab extends Component {
     .catch(err => alert(err.message))
   }
 
-  changeTable = (pairId) => {
+  changeTable = (e, pairId) => {
+    e.stopPropagation();
     const newTable = window.prompt(`Which table should this pair be reassigned to?`)
     if (newTable || newTable === '') {
       fetch('/admin/pair/move/'+pairId, {
@@ -270,12 +272,12 @@ export default class PairsTab extends Component {
                                                                           color="purple"
                                                                           size="tiny"
                                                                           style={ styles.button }
-                                                                          onClick={ () => this.changeTable(pair._id) } >Move</Button> }
+                                                                          onClick={ (e) => this.changeTable(e, pair._id) } >Move</Button> }
                          { pair.date < today  ? null : <Button compact={true}
                                                                           color='red'
                                                                           size="tiny"
                                                                           style={ styles.button }
-                                                                          onClick={ () => this.deletePair(pair._id, pair.date) } >Delete</Button> }
+                                                                          onClick={ (e) => this.deletePair(e, pair._id, pair.date) } >Delete</Button> }
                        </div>
                      </Segment>
                    </List.Item>
@@ -385,7 +387,7 @@ const CheckModal = ({ ratings, pairs, handleClose, students }) => {
                       return <li key={student._id} style={{ marginTop: '10px', fontWeight: students.includes(student.name) ? 'bold' : 'normal' }} >{ student.name }</li>
                    }) } </ul>
                  </Segment>
-        }) : <h1 style={{color: 'red', textAlign: 'center', padding: '10% 0'}}>No pairing history found</h1>}
+        }) : <h1 style={{color: 'red', textAlign: 'center', padding: '10% 0', fontSize: '15px'}}>No pairing history found</h1>}
         </Modal.Content>
 
         <Modal.Content scrolling={true} style={{ flex: 1, margin: '0 0 0 5%'  }} >
@@ -394,7 +396,7 @@ const CheckModal = ({ ratings, pairs, handleClose, students }) => {
                      <div style={ styles.pairDate } >{ moment(rate.date).format('dddd, l') }</div>
                      <div style={{fontSize: '15px'}} >{ showRating(rate.student.name, rate.partner.name, rate.rating) }</div>
                    </Segment>
-          }) : <h3 style={{color: 'red', textAlign: 'center', padding: '10% 0'}}>No ratings found</h3>}
+          }) : <h3 style={{color: 'red', textAlign: 'center', padding: '10% 0', fontSize: '15px'}}>No ratings found</h3>}
           </Modal.Content>
       </Modal.Content>
     </Modal>

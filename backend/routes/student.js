@@ -51,7 +51,7 @@ export default (passport) => {
 
   // allow students to update password
   router.post('/update', (req, res) => {
-    if (req.user.password !== hashPassword(req.body.currentPassword)) {
+    if (!req.body.currentPassword || req.user.password !== hashPassword(req.body.currentPassword)) {
       return setResponse(res, 400, false, { error: 'Wrong password' });
     }
     if (!req.body.newPassword) {

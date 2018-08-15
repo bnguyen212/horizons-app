@@ -4,19 +4,19 @@ import setResponse from '../setResponse';
 
 const router = express.Router();
 
+// get all users in the database
+router.get('/', (req, res) => {
+  User.find({}, { password: 0 }).sort({ role: 1, status: 1, username: 1 }).populate('createdBy lastModifiedBy.user', 'username')
+    .then(users => setResponse(res, 200, true, { users }))
+    .catch(err => setResponse(res, 400, false, { error: err.message }));
+});
+
 // only admin users has access
 router.use('*', (req, res, next) => {
   if (req.user && req.user.role === 'Admin') {
     return next();
   }
   return setResponse(res, 401, false, { error: 'Only Admin users have access' });
-});
-
-// get all users in the database
-router.get('/', (req, res) => {
-  User.find({}, { password: 0 }).sort({ role: 1, status: 1, username: 1 }).populate('createdBy lastModifiedBy.user', 'username')
-    .then(users => setResponse(res, 200, true, { users }))
-    .catch(err => setResponse(res, 400, false, { error: err.message }));
 });
 
 // create new instructor and admin
