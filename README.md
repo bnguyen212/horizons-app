@@ -1,12 +1,14 @@
 # Horizons App
 
-### Objective
+https://horizons-app.herokuapp.com/
+
+## Objective
  - Integrating a students management system with features that allow consistency among daily operations (ex. attendance, assign programming pairs, rating partners etc.)
 
-### Backend API Documentation
+## Backend API Documentation
 [https://airtable.com/shr3pEEVxY7oxLSaq/tblyUonlfYRsa2NBF](https://airtable.com/shr3pEEVxY7oxLSaq/tblyUonlfYRsa2NBF)
 
-### Features
+## Features
 - Student Portal
   - Check in
   - View assigned pairs for the day
@@ -25,6 +27,6 @@
   - Assign student pairs (of 1, 2, or 3) daily
   - Check a pair's compatibility based on previous pairing and ratings
 
-### Tech
+## Tech
 - __Frontend__: React, Semantic UI
 - __Backend__: Node.js, Express, MongoDB
