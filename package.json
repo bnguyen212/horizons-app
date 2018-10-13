@@ -20,8 +20,8 @@
     "underscore": "^1.9.1"
   },
   "scripts": {
-    "start": "babel-node backend/server.js --presets env",
-    "server": "nodemon backend/server.js --exec babel-node --presets env",
+    "start": "babel-node ./backend/server.js --presets env",
+    "server": "nodemon ./backend/server.js --exec babel-node --presets env",
     "react": "react-scripts start",
     "dev": "npm run react | npm run backend/server",
     "build": "react-scripts build",
