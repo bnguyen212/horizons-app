@@ -30,7 +30,7 @@ router.post('/new/:studentId', (req, res) => {
   if (!req.body.date) {
     return setResponse(res, 400, false, { error: 'Missing parameter' });
   }
-  let today = new Date().toISOString().slice(0, 10);
+  const today = new Date().toISOString().slice(0, 10);
   if (req.body.date > today) {
     return setResponse(res, 400, false, { error: 'Cannot check in for a day in the future' })
   }

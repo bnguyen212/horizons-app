@@ -61,7 +61,7 @@ router.get('/:studentId', (req, res) => {
 // get a specific pair info
 router.get('/info/:pairId', (req, res) => {
   let students;
-  let resp = {};
+  const resp = {};
   Pair.findById(req.params.pairId).populate('students', 'name')
     .then((pair) => {
       if (!pair) throw new Error('Invalid pair ID');

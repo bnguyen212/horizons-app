@@ -206,7 +206,7 @@ class AllCohorts extends Component {
   }
 
   render() {
-    let { cohorts } = this.state
+    const { cohorts } = this.state
     return (
       <div className="tab" >
         <Segment style={ styles.container } >
