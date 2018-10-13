@@ -29,7 +29,8 @@
     "dev": "npm run react | npm run backend/server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "npm run build"
   },
   "devDependencies": {
     "eslint-config-airbnb-standard": "^2.1.6"
