@@ -7,10 +7,12 @@ import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
+import dotenv from 'dotenv';
 import { User, Student, hashPassword } from './models/models';
 import studentRoute from './routes/student';
 import adminRoute from './routes/admin';
 
+dotenv.config();
 const app = express();
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 mongoose.connection.on('connected', () => {
