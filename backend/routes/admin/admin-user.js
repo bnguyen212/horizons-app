@@ -1,6 +1,6 @@
 import express from 'express';
-import { User } from '../models/models';
-import setResponse from '../setResponse';
+import { User } from '../../models/models';
+import setResponse from '../../util/setResponse';
 
 const router = express.Router();
 

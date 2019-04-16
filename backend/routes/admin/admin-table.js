@@ -1,6 +1,6 @@
 import express from 'express';
-import { Table } from '../models/models';
-import setResponse from '../setResponse';
+import { Table } from '../../models/models';
+import setResponse from '../../util/setResponse';
 
 const router = express.Router();
 

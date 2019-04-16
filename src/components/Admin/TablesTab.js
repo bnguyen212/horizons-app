@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Segment, List, Button, Form } from 'semantic-ui-react';
 import _ from 'underscore';
+import { Segment, List, Button, Form } from 'semantic-ui-react';
 
 export default class TablesTab extends Component {
   state = {
@@ -159,6 +159,7 @@ export default class TablesTab extends Component {
                 <Form.Field>
                   <input placeholder="Enter building location..."
                          value={ this.state.newTableBuilding }
+                         style={styles.input}
                          onChange={ e => this.setState({ newTableBuilding: e.target.value }) } />
                 </Form.Field>
               </Form>
@@ -168,6 +169,7 @@ export default class TablesTab extends Component {
                 <Form.Field>
                   <input placeholder="Enter new table code..."
                          value={ this.state.newTableInput }
+                         style={styles.input}
                          onChange={ e => this.setState({ newTableInput: e.target.value }) } />
                 </Form.Field>
               </Form>
@@ -199,7 +201,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -221,7 +223,7 @@ const styles = {
   },
   bottom: {
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -239,13 +241,18 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    fontSize: '12px',
     padding: '0 10%'
   },
   table: {
     flex: 2,
     textAlign: 'left',
-    fontSize: '15px',
     fontWeight: 'bold',
     color: 'blue'
+  },
+  input: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    height: '20px'
   }
 }

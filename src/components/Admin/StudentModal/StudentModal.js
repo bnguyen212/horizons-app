@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Modal, Header, Icon, Menu } from 'semantic-ui-react';
-import StudentPairs from './StudentModal/StudentPairs';
-import StudentRatings from './StudentModal/StudentRatings';
-import StudentAttendance from './StudentModal/StudentAttendance';
 import moment from 'moment';
+import { Modal, Header, Icon, Menu } from 'semantic-ui-react';
+import StudentPairs from './StudentPairs';
+import StudentRatings from './StudentRatings';
+import StudentAttendance from './StudentAttendance';
 
 export default class StudentModal extends Component {
   state = {

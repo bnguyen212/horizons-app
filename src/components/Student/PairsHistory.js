@@ -13,7 +13,7 @@ export default class PairsHistory extends Component {
     .then(res => res.json())
     .then(result => {
       if (result.success) {
-        console.log(result.history)
+        // console.log(result.history)
         this.setState({ pairs: result.history })
       } else {
         console.log(result.error)
@@ -58,7 +58,7 @@ export default class PairsHistory extends Component {
       <div className="tab" >
         <Segment style={ styles.container } >
           <Segment inverted attached="top" style={ styles.header } >
-            <div style={ styles.columnPairTitle }>Partner(s)</div>
+            <div style={ styles.columnPairTitle }>Partners</div>
             <div style={ styles.columnDateTitle } >Date</div>
           </Segment>
           <List selection style={ styles.list } >
@@ -66,11 +66,11 @@ export default class PairsHistory extends Component {
             return <List.Item key={pair._id} style={ styles.listItem } >
                      <Segment attached={true} style={ styles.pairHistoryContainer } >
                        <div style={ styles.pair } >
-                        <div style={ styles.pairNameHistory }>{ pair.students[0] ? pair.students[0].name : 'No partner assigned.' } { pair.students[0] ? pair.students[0].rated ? null : <Button style={{marginLeft: '20px'}} compact={true} size="tiny" color="grey" onClick={ () => this.rate(pair.students[0]._id, pair.students[0].name, pair.date) }>Rate</Button>  : null }</div>
+                        <div style={ styles.pairNameHistory }>{ pair.students[0] ? pair.students[0].name : 'No partner assigned.' } { pair.students[0] ? pair.students[0].rated ? null : <Button style={{marginLeft: '10px'}} compact={true} size="tiny" color="grey" onClick={ () => this.rate(pair.students[0]._id, pair.students[0].name, pair.date) }>Rate</Button>  : null }</div>
                          { pair.students[0] ? pair.students[0].rated ? <div style={ styles.subtext } >You rated {pair.students[0].rated.rating} star(s)</div> : null : null }
                         </div>
                        <div style={ styles.pair } >
-                         <div style={ styles.pairNameHistory }>{ pair.students[1] ? pair.students[1].name : null } { pair.students[1] ? pair.students[1].rated ? null : <Button style={{marginLeft: '20px'}} compact={true} size="tiny" color="grey" onClick={ () => this.rate(pair.students[1]._id, pair.students[1].name, pair.date) }>Rate</Button>  : null }</div>
+                         <div style={ styles.pairNameHistory }>{ pair.students[1] ? pair.students[1].name : null } { pair.students[1] ? pair.students[1].rated ? null : <Button style={{marginLeft: '10px'}} compact={true} size="tiny" color="grey" onClick={ () => this.rate(pair.students[1]._id, pair.students[1].name, pair.date) }>Rate</Button>  : null }</div>
                          { pair.students[1] ? pair.students[1].rated ? <div style={ styles.subtext } >You rated {pair.students[1].rated.rating} star(s)</div> : null : null }
                        </div>
                        <div style={ styles.pairDate } >{ moment(pair.date).format('dddd, LL') }</div>
@@ -86,10 +86,10 @@ export default class PairsHistory extends Component {
 
 const styles = {
   subtext: {
-    fontSize: '15px',
+    fontSize: '8px',
     color: 'grey',
     fontStyle: 'italic',
-    marginTop: '5px'
+    lineHeight: 1.5
   },
   container: {
     display: 'flex',
@@ -103,7 +103,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -130,10 +130,11 @@ const styles = {
   pairHistoryContainer: {
     margin: 0,
     width: '100%',
-    minHeight: '60px',
+    minHeight: '40px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    fontSize: '12px',
     padding: '0 10%'
   },
   pair: {
@@ -142,11 +143,9 @@ const styles = {
   },
   pairNameHistory: {
     color: 'blue',
-    fontSize: '20px',
     textAlign: 'left'
   },
   pairDate: {
-    fontSize: '15px',
     textAlign: 'left',
     flex: 1
   },

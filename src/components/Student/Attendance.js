@@ -58,7 +58,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -77,45 +77,24 @@ const styles = {
   pairContainer: {
     margin: 0,
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '0 10%'
-  },
-  pairName: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: '20px',
-    flex: 1,
-    textAlign: 'left'
-  },
-  pairHistoryContainer: {
-    margin: 0,
-    width: '100%',
-    minHeight: '60px',
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: '0 10%'
-  },
-  pair: {
-    flex: 1.5,
-    textAlign: 'left',
+    padding: '0 10%',
+    fontSize: '12px'
   },
   day: {
     flex: 2,
     textAlign: 'left',
     color: 'green',
     fontWeight: 'bold',
-    fontSize: '20px'
   },
   warning: {
     color: 'red',
     margin: '25px 0'
   },
   description: {
-    fontStyle: '15px',
     color: 'grey',
     flex: 1
   }

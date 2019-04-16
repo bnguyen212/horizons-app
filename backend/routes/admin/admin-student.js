@@ -1,6 +1,6 @@
 import express from 'express';
-import { Student, Cohort, Attendance, Rating, Pair } from '../models/models';
-import setResponse from '../setResponse';
+import { Student, Cohort, Attendance, Rating, Pair } from '../../models/models';
+import setResponse from '../../util/setResponse';
 
 const router = express.Router();
 

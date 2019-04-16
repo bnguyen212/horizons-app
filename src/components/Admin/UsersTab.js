@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Segment, List, Button, Form } from 'semantic-ui-react';
 import moment from 'moment';
 import _ from 'underscore';
+import { Segment, List, Button, Form } from 'semantic-ui-react';
 
 export default class UsersTab extends Component {
   state = {
@@ -194,8 +194,8 @@ export default class UsersTab extends Component {
                          <div style={ styles.userName } >{ user.username }</div>
                          <div style={ styles.userLogs } >{ `Created by ${ user.createdBy.username } | Last modified by ${user.lastModifiedBy.user.username} on ${moment(user.lastModifiedBy.time).format('MMM Do, YYYY')}`} </div>
                        </div>
-                       <div style={{flex: 2, textAlign: 'left', fontSize: '15px', fontWeight: 'bold', color: user.role === 'Admin' ? 'red' : 'blue' }}>{ user.role }</div>
-                       <div style={{flex: 2, textAlign: 'left', fontSize: '15px', fontWeight: 'bold', color: user.status === 'Active' ? 'green' : user.status === 'Inactive' ? 'grey' : 'purple' }}>{ user.status }</div>
+                       <div style={{flex: 2, textAlign: 'left', fontSize: '12px', fontWeight: 'bold', color: user.role === 'Admin' ? 'red' : 'blue' }}>{ user.role }</div>
+                       <div style={{flex: 2, textAlign: 'left', fontSize: '12px', fontWeight: 'bold', color: user.status === 'Active' ? 'green' : user.status === 'Inactive' ? 'grey' : 'purple' }}>{ user.status }</div>
                        <div style={ styles.userActions } >
                          { user.status !== 'Inactive' && user.role !== 'Admin' ? <Button color='orange'
                                                                                          size="tiny"
@@ -233,6 +233,7 @@ export default class UsersTab extends Component {
                 <Form.Field>
                   <input placeholder="Enter new employee..."
                          value={ this.state.newUserInput }
+                         style={styles.input}
                          onChange={ e => this.setState({ newUserInput: e.target.value }) } />
                 </Form.Field>
               </Form>
@@ -275,7 +276,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -301,7 +302,7 @@ const styles = {
   },
   bottom: {
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -318,10 +319,11 @@ const styles = {
   userContainer: {
     margin: 0,
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    fontSize: '12px',
     padding: '0px 5%'
   },
   userInfo: {
@@ -331,18 +333,22 @@ const styles = {
     textAlign: 'left'
   },
   userName: {
-    fontSize: '20px',
-    marginTop: '5px',
-    marginBottom: '5px',
+    marginTop: '2px',
+    marginBottom: '1px',
     fontWeight: 'bold'
   },
   userLogs: {
-    fontSize: '10px',
+    fontSize: '8px',
     fontStyle: 'italic'
   },
   userActions: {
     flex: 4,
     display: 'flex',
     justifyContent: 'flex-end'
+  },
+  input: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    height: '20px'
   }
 }

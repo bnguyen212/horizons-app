@@ -14,7 +14,7 @@ export default class General extends Component {
     .then(res => res.json())
     .then(result => {
       if (result.success) {
-        console.log(result)
+        // console.log(result)
         this.setState({ myPair: result.pair, attendance: result.attendance, name: result.name })
       } else {
         console.log(result.error)
@@ -67,7 +67,7 @@ export default class General extends Component {
     return (
       <div style={ styles.general }>
         { this.state.name ? <h1 style={ styles.welcome } >{`Welcome, ${this.state.name.split(' ')[0]}!`}</h1> : null }
-        <h1 style={ styles.date }>{ moment().format('dddd, LL') }</h1>
+        <h3 style={ styles.date }>{ moment().format('dddd, LL') }</h3>
         <div>{ this.state.attendance ? <Icon name="check circle" color="green" size="huge" /> : <Button onClick={ this.checkin } color="blue" size="large" >Check In</Button> }</div>
         <h1 style={ styles.partners }>{ this.state.myPair ? this.displayPartner(this.state.myPair.students) : "Pairs are not (yet) made today." }</h1>
         { this.state.myPair && this.state.myPair.table ? <h2 style={{fontSize: '30px'}}><i>Table</i> : { this.state.myPair.table }</h2> : null }
@@ -80,20 +80,20 @@ const styles = {
   general: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    justifyContent: 'space-evenly',
+    height: '100%',
+    padding: '10% 0'
   },
   welcome: {
-    fontSize: '40px',
+    fontSize: '50px',
     color: 'green'
   },
   date: {
     fontSize: '30px',
-    margin: '60px 0',
     color: 'indigo',
     fontStyle: 'italic',
   },
   partners: {
     fontSize: '30px',
-    margin: '60px 0 30px 0'
   }
 }

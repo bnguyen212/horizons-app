@@ -63,7 +63,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -90,16 +90,15 @@ const styles = {
   pairContainer: {
     margin: 0,
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
+    fontSize: '12px',
     padding: '0 10%'
   },
   pairName: {
     color: 'blue',
-    fontWeight: 'bold',
-    fontSize: '20px',
     flex: 1,
     textAlign: 'left'
   },
@@ -111,7 +110,6 @@ const styles = {
     flex: 0.5,
     textAlign: 'left',
     color: 'red',
-    fontSize: '20px'
   },
   warning: {
     color: 'red',

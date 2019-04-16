@@ -26,13 +26,10 @@
     "start": "babel-node ./backend/server.js --presets env",
     "server": "nodemon ./backend/server.js --exec babel-node --presets env",
     "react": "react-scripts start",
-    "dev": "npm run react | npm run backend/server",
+    "dev": "npm run react | npm run server",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
-  },
-  "devDependencies": {
-    "eslint-config-airbnb-standard": "^2.1.6"
   }
 }

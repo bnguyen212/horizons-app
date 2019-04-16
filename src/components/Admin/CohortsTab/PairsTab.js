@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Segment, List, Button, Form, Modal, Header } from 'semantic-ui-react';
 import moment from 'moment';
 import _ from 'underscore';
+import { Segment, List, Button, Form } from 'semantic-ui-react';
+import PairModal from './PairModal';
+import CheckCompatibilityModal from './CheckCompatibilityModal';
 
 export default class PairsTab extends Component {
   state = {
@@ -245,6 +247,7 @@ export default class PairsTab extends Component {
                 <Form.Field>
                   <input value={ queryDate }
                          type="date"
+                         style={ styles.input }
                          onChange={ e => this.setState({ queryDate: e.target.value }) } />
                 </Form.Field>
               </Form>
@@ -341,6 +344,7 @@ export default class PairsTab extends Component {
                 <Form.Field>
                   <input value={ showDate }
                          type="date"
+                         style={styles.input}
                          disabled={true} />
                 </Form.Field>
               </Form>
@@ -360,83 +364,9 @@ export default class PairsTab extends Component {
           </Segment> : null }
         </Segment>
         { modalOpen ? <PairModal handleClose={ this.handleClose } modalPair={ modalPair } ratings={ modalRatings } /> : null }
-        { modalCheckOpen ? <CheckModal handleClose={ this.handleClose2 } pairs={ modalCheckPairs } ratings={ modalCheckRatings } students={ modalCheckStudents } /> : null }
+        { modalCheckOpen ? <CheckCompatibilityModal handleClose={ this.handleClose2 } pairs={ modalCheckPairs } ratings={ modalCheckRatings } students={ modalCheckStudents } /> : null }
       </div>
     )
-  }
-}
-
-const CheckModal = ({ ratings, pairs, handleClose, students }) => {
-  return (
-    <Modal onClose={ handleClose }
-           dimmer='blurring'
-           closeIcon
-           defaultOpen={true}
-           size='small'>
-      <Header size="large"
-              icon='users'
-              attached="top"
-              content={ `${ students[0] } - ${ students[1] }${ students[2] ? ` - ${students[2]}` : '' }` } />
-      <Modal.Content style={{display: 'flex', flexDirection: 'row' }}>
-        <Modal.Content scrolling={true} style={{ flex: 1, margin: '0 5% 0 0' }} >
-        { pairs.length ? pairs.map(pair => {
-          return <Segment key={pair._id} attached={false} style={ styles.rating } >
-                   <div style={ styles.pairDate } >Partners on: <u>{ moment(pair.date).format(' l') }</u></div>
-                   <ul>
-                   { pair.students.map(student => {
-                      return <li key={student._id} style={{ marginTop: '10px', fontWeight: students.includes(student.name) ? 'bold' : 'normal' }} >{ student.name }</li>
-                   }) } </ul>
-                 </Segment>
-        }) : <h1 style={{color: 'red', textAlign: 'center', padding: '10% 0', fontSize: '15px'}}>No pairing history found</h1>}
-        </Modal.Content>
-
-        <Modal.Content scrolling={true} style={{ flex: 1, margin: '0 0 0 5%'  }} >
-          { ratings.length ? ratings.map(rate => {
-            return <Segment key={rate._id} attached={false} style={ styles.rating } >
-                     <div style={ styles.pairDate } >{ moment(rate.date).format('dddd, l') }</div>
-                     <div style={{fontSize: '15px'}} >{ showRating(rate.student.name, rate.partner.name, rate.rating) }</div>
-                   </Segment>
-          }) : <h3 style={{color: 'red', textAlign: 'center', padding: '10% 0', fontSize: '15px'}}>No ratings found</h3>}
-          </Modal.Content>
-      </Modal.Content>
-    </Modal>
-  )
-}
-
-const PairModal = ({ ratings, modalPair, handleClose }) => {
-  return (
-    <Modal onClose={ handleClose }
-           dimmer='blurring'
-           closeIcon
-           defaultOpen={true}
-           size='small'>
-      <Header size="large"
-              icon='users'
-              attached="top"
-              content={ `${ modalPair.students[0].name } - ${ modalPair.students[1].name }${ modalPair.students[2] ? ` - ${modalPair.students[2].name}` : '' }` }
-              subheader={ moment(modalPair.date).format('dddd, LL') } />
-      <Modal.Content style={{padding: 0, border: 0}} >
-      { ratings.length ? ratings.map(rating => {
-        return <Segment key={rating._id} attached={false} style={ styles.pair } >
-                 <div style={{fontSize: '20px'}} >{ showRating(rating.student.name, rating.partner.name, rating.rating) }</div>
-               </Segment>
-      }) : <h1 style={{color: 'red', textAlign: 'center', padding: '10% 0'}}>No ratings found for this pair</h1>}
-    </Modal.Content>
-    </Modal>
-  )
-}
-
-const showRating = (rater, rated, rating, date) => {
-  if (rating === 1) {
-    return <span style={{color: 'red'}}><b>{ rater }</b> rated <b>{ rated }</b> 1 star</span>
-  } else if (rating === 2) {
-    return <span style={{color: 'red'}}><b>{ rater }</b> rated <b>{ rated }</b> 2 stars</span>
-  } else if (rating === 3) {
-    return <span><b>{ rater }</b> rated <b>{ rated }</b> 3 stars</span>
-  } else if (rating === 4 || rating === 5) {
-    return <span style={{color: 'green'}}><b>{ rater }</b> rated <b>{ rated }</b> {rating} stars</span>
-  } else {
-    return <span>{`No rating from ${ rater } yet`}</span>
   }
 }
 
@@ -453,7 +383,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -482,7 +412,7 @@ const styles = {
   },
   bottom: {
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -500,7 +430,7 @@ const styles = {
   pairContainer: {
     margin: 0,
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -522,14 +452,9 @@ const styles = {
     textAlign: 'left',
     color: 'red'
   },
-  pair: {
-    padding: "20px 10%",
-    margin: 0
-  },
-  pairDate: {
-    color: 'blue',
-    fontSize: '15px',
-    fontWeight: 'bold',
-    marginBottom: '10px'
-  },
+  input: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    height: '20px'
+  }
 }

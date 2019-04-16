@@ -1,24 +1,16 @@
 import express from 'express';
-import studentRoute from './admin-student';
 import userRoute from './admin-user';
-import pairRoute from './admin-pair';
+import studentRoute from './admin-student';
+import cohortRoute from './admin-cohort';
 import attendanceRoute from './admin-attendance';
 import wordRoute from './admin-word';
+import pairRoute from './admin-pair';
 import ratingRoute from './admin-rating';
-import cohortRoute from './admin-cohort';
 import tableRoute from './admin-table';
-import { hashPassword, User } from '../models/models';
-import setResponse from '../setResponse';
+import { hashPassword, User } from '../../models/models';
+import setResponse from '../../util/setResponse';
 
 const router = express.Router();
-
-// 200: success with info
-// 201: success created
-// 204: success but not content
-// 400: bad request
-// 401: unauthorized
-// 404: not found
-// 500: server error
 
 export default (passport) => {
   // instructor/admin register
@@ -91,17 +83,17 @@ export default (passport) => {
 
   router.use('/user', userRoute);
 
+  router.use('/cohort', cohortRoute);
+
+  router.use('/attendance', attendanceRoute);
+
+  router.use('/word', wordRoute);
+
   router.use('/student', studentRoute);
 
   router.use('/pair', pairRoute);
 
-  router.use('/word', wordRoute);
-
-  router.use('/attendance', attendanceRoute);
-
   router.use('/rating', ratingRoute);
-
-  router.use('/cohort', cohortRoute);
 
   router.use('/table', tableRoute);
 
