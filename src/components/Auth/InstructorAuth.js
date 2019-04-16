@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 export default class InstructorAuth extends Component {
   state = {
     username: '',

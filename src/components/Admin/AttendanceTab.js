@@ -3,7 +3,7 @@ import { Segment, List, Button, Form, Icon } from 'semantic-ui-react';
 import moment from 'moment';
 import _ from 'underscore';
 
-export default class AttedanceTab extends Component {
+export default class AttendanceTab extends Component {
   state = {
     attendance: [],
     sortBy: 'Name',
@@ -95,6 +95,7 @@ export default class AttedanceTab extends Component {
                 <Form.Field>
                   <input value={ queryDate }
                          type="date"
+                         style={ styles.input }
                          onChange={ e => this.setState({ queryDate: e.target.value }) } />
                 </Form.Field>
               </Form>
@@ -144,7 +145,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -180,7 +181,7 @@ const styles = {
   attendanceContainer: {
     margin: 0,
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -190,5 +191,10 @@ const styles = {
     flex: 1,
     display: 'flex',
     justifyContent: 'flex-end'
+  },
+  input: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    height: '20px'
   }
 }

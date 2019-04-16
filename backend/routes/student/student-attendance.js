@@ -1,7 +1,7 @@
 import express from 'express';
-import setResponse from '../setResponse';
-import { Attendance, Word } from '../models/models';
 import moment from 'moment';
+import { Attendance, Word } from '../../models/models';
+import setResponse from '../../util/setResponse';
 
 const router = express.Router();
 

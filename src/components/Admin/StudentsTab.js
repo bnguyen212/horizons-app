@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Segment, List, Button, Form } from 'semantic-ui-react';
 import _ from 'underscore';
+import { Segment, List, Button, Form } from 'semantic-ui-react';
 
 export default class StudentsTab extends Component {
   state = {
@@ -230,7 +230,8 @@ export default class StudentsTab extends Component {
                 <Form.Field>
                   <input placeholder="Filter by name..."
                          value={ queryName }
-                         onChange={ e => this.setState({ queryName: e.target.value }) } />
+                         onChange={ e => this.setState({ queryName: e.target.value }) }
+                         style={ styles.input } />
                 </Form.Field>
               </Form>
             </div>
@@ -238,6 +239,7 @@ export default class StudentsTab extends Component {
               { this.props.cohort ? null : <Form size="small" style={{ width: '70%' }}>
                 <Form.Field control="select"
                             onChange={ e => this.setState({ queryCohort: e.target.value }) }
+                            style={styles.input}
                             value={ queryCohort } >
                   <option value="" ></option>
                   { cohorts.map(option => <option key={ option } value={ option } >{ option }</option>) }
@@ -247,6 +249,7 @@ export default class StudentsTab extends Component {
             <div style={ styles.columnMid } >
               <Form size="small" style={{width: '50%'}} >
                 <Form.Field control="select"
+                            style={styles.input}
                             onChange={ e => this.setState({ queryStatus: e.target.value }) }
                             value={ queryStatus } >
                   <option value="" ></option>
@@ -265,7 +268,7 @@ export default class StudentsTab extends Component {
                      <Segment attached={true} style={ styles.studentContainer } >
                        <div style={ styles.studentInfo } >{ student.name }</div>
                        <div style={ styles.cohort }>{ student.cohort.name }</div>
-                       <div style={{flex: 2, textAlign: 'left', fontSize: '15px', fontWeight: 'bold', color: student.status === 'Active' ? 'green' : student.status === 'Inactive' ? 'grey' : 'purple' }}>{ student.status }</div>
+                       <div style={{flex: 2, textAlign: 'left', fontSize: '12px', fontWeight: 'bold', color: student.status === 'Active' ? 'green' : student.status === 'Inactive' ? 'grey' : 'purple' }}>{ student.status }</div>
                        <div style={ styles.studentActions } >
                          { student.status === 'Inactive' ? null : <Button compact={true}
                                                                           color="blue"
@@ -303,6 +306,7 @@ export default class StudentsTab extends Component {
                 <Form.Field>
                   <input placeholder="Enter new student's full name"
                          value={ newStudentInput }
+                         style={styles.input}
                          onChange={ e => this.setState({ newStudentInput: e.target.value }) } />
                 </Form.Field>
               </Form>
@@ -313,6 +317,7 @@ export default class StudentsTab extends Component {
                   <input placeholder="Enter cohort name..."
                          value={ newStudentCohort }
                          disabled={ this.props.cohort ? true : false }
+                         style={styles.input}
                          onChange={ e => this.setState({ newStudentCohort: e.target.value }) } />
                 </Form.Field>
               </Form>
@@ -345,7 +350,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -357,7 +362,7 @@ const styles = {
     fontSize: '20px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -384,7 +389,7 @@ const styles = {
   },
   bottom: {
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -401,7 +406,7 @@ const styles = {
   studentContainer: {
     margin: 0,
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -413,11 +418,7 @@ const styles = {
     flexDirection: 'column',
     textAlign: 'left',
     fontWeight: 'bold',
-    fontSize: '20px'
-  },
-  studentLogs: {
-    fontSize: '10px',
-    fontStyle: 'italic'
+    fontSize: '12px'
   },
   studentActions: {
     flex: 4,
@@ -427,7 +428,7 @@ const styles = {
   cohort: {
     flex: 2,
     textAlign: 'left',
-    fontSize: '15px',
+    fontSize: '12px',
     fontWeight: 'bold'
   },
   modal: {
@@ -448,21 +449,10 @@ const styles = {
     margin: '10px 1%',
     height: '20%'
   },
-  weekday: {
-    color: 'green',
-    fontSize: '20px',
-    fontWeight: 'bold'
-  },
   date: {
     color: 'green',
     fontSize: '15px',
     fontWeight: 'bold'
-  },
-  description: {
-    textAlign: 'right',
-    paddingTop: '10px',
-    fontSize: '10px',
-    fontStyle: 'italic'
   },
   pair: {
     width: '30%',
@@ -497,5 +487,10 @@ const styles = {
   partnerColumn: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  input: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    height: '20px'
   }
 }

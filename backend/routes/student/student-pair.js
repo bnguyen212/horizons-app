@@ -1,7 +1,7 @@
 import express from 'express';
-import setResponse from '../setResponse';
 import moment from 'moment';
-import { Pair, Rating, Attendance } from '../models/models';
+import { Pair, Rating, Attendance } from '../../models/models';
+import setResponse from '../../util/setResponse';
 
 const router = express.Router();
 

@@ -1,13 +1,14 @@
 import express from 'express';
-import setResponse from '../setResponse';
-import { Student, hashPassword } from '../models/models';
 import attendanceRoute from './student-attendance';
-import ratingRoute from './student-rating';
 import pairRoute from './student-pair';
+import ratingRoute from './student-rating';
+import { Student, hashPassword } from '../../models/models';
+import setResponse from '../../util/setResponse';
 
 const router = express.Router();
 
 export default (passport) => {
+
   router.post('/register', (req, res) => {
     if (!req.body.name || !req.body.password) {
       return setResponse(res, 400, false, { error: 'Missing parameter(s)' });
@@ -72,9 +73,9 @@ export default (passport) => {
 
   router.use('/attendance', attendanceRoute);
 
-  router.use('/rating', ratingRoute);
-
   router.use('/pair', pairRoute);
+
+  router.use('/rating', ratingRoute);
 
   return router;
 };

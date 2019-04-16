@@ -69,10 +69,6 @@ export default class StudentPortal extends Component {
                          color="red"
                          active={ activePane === 'general' }
                          onClick={ this.handleItemClick } >General</Menu.Item>
-              <Menu.Item name='lecture'
-                         color="red"
-                         active={ activePane === 'lecture' }
-                         onClick={ this.handleItemClick } >Lecture Schedule</Menu.Item>
               <Menu.Item name='pairs'
                          color="red"
                          active={ activePane === 'pairs' }
@@ -85,14 +81,6 @@ export default class StudentPortal extends Component {
                          color="red"
                          active={ activePane === 'prevPairs' }
                          onClick={ this.handleItemClick } >Previous Pairs</Menu.Item>
-              <Menu.Item name='links'
-                         color="red"
-                         active={ activePane === 'links' }
-                         onClick={ this.handleItemClick } >Important Links</Menu.Item>
-              <Menu.Item name='FAQ'
-                         color="red"
-                         active={ activePane === 'FAQ' }
-                         onClick={ this.handleItemClick } >FAQ</Menu.Item>
               <Menu.Item name='account'
                          color="red"
                          active={ activePane === 'account' }

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import logo from '../app.png';
 import { Menu, Icon } from 'semantic-ui-react';
-import InfoTab from './Admin/InfoTab';
+import InfoTab from './Admin/InfoTab/InfoTab';
 import UsersTab from './Admin/UsersTab';
 import StudentsTab from './Admin/StudentsTab';
-import CohortsTab from './Admin/CohortsTab';
+import CohortsTab from './Admin/CohortsTab/CohortsTab';
 import WordsTab from './Admin/WordsTab';
 import TablesTab from './Admin/TablesTab';
-import StudentModal from './Admin/StudentModal';
+import StudentModal from './Admin/StudentModal/StudentModal';
 
 export default class AdminPortal extends Component {
   state = {
