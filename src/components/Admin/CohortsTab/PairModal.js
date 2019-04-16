@@ -10,7 +10,7 @@ const PairModal = ({ ratings, modalPair, handleClose }) => {
       closeIcon
       defaultOpen={true}
       size='small'>
-      <Header size="large"
+      <Header size="medium"
         icon='users'
         attached="top"
         content={`${modalPair.students[0].name} - ${modalPair.students[1].name}${modalPair.students[2] ? ` - ${modalPair.students[2].name}` : ''}`}

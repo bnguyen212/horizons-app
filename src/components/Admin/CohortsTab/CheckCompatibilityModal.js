@@ -22,7 +22,7 @@ const CheckCompatibilityModal = ({ ratings, pairs, handleClose, students }) => {
               <div style={styles.pairDate} >Partners on: <u>{moment(pair.date).format(' l')}</u></div>
               <ul>
                 {pair.students.map(student => {
-                  return <li key={student._id} style={{ marginTop: '10px', fontWeight: students.includes(student.name) ? 'bold' : 'normal' }} >{student.name}</li>
+                  return <li key={student._id} style={{ fontSize: '12px', marginTop: '5px', fontWeight: students.includes(student.name) ? 'bold' : 'normal' }} >{student.name}</li>
                 })} </ul>
             </Segment>
           }) : <h1 style={{ color: 'red', textAlign: 'center', padding: '10% 0', fontSize: '15px' }}>No pairing history found</h1>}
@@ -32,7 +32,7 @@ const CheckCompatibilityModal = ({ ratings, pairs, handleClose, students }) => {
           {ratings.length ? ratings.map(rate => {
             return <Segment key={rate._id} attached={false} >
               <div style={styles.pairDate} >{moment(rate.date).format('dddd, l')}</div>
-              <div style={{ fontSize: '15px' }} ><Rating rater={rate.student.name} rated={rate.partner.name} rating={rate.rating} /></div>
+              <div style={{ fontSize: '12px' }} ><Rating rater={rate.student.name} rated={rate.partner.name} rating={rate.rating} /></div>
             </Segment>
           }) : <h3 style={{ color: 'red', textAlign: 'center', padding: '10% 0', fontSize: '15px' }}>No ratings found</h3>}
         </Modal.Content>
@@ -44,7 +44,7 @@ const CheckCompatibilityModal = ({ ratings, pairs, handleClose, students }) => {
 const styles = {
   pairDate: {
     color: 'blue',
-    fontSize: '15px',
+    fontSize: '12px',
     fontWeight: 'bold',
     marginBottom: '10px'
   }

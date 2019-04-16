@@ -435,7 +435,8 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     paddingTop: 0,
-    paddingBottom: 0
+    paddingBottom: 0,
+    fontSize: '12px'
   },
   pairActions: {
     flex: 1.5,

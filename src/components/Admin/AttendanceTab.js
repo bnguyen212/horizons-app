@@ -185,7 +185,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: '0 10%'
+    padding: '0 10%',
+    fontSize: '12px'
   },
   attendanceActions: {
     flex: 1,
