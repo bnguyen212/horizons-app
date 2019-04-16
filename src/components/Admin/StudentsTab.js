@@ -117,7 +117,7 @@ export default class StudentsTab extends Component {
     .then(res => res.json())
     .then(result => {
       if (result.success) {
-        this.setState({ newStudentInput: '', newStudentCohort: '' }, this.componentDidMount)
+        this.setState({ newStudentInput: '', newStudentCohort: this.props.cohortName || '' }, this.componentDidMount)
       } else {
         alert(result.error)
       }

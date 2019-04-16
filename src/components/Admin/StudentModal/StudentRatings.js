@@ -66,6 +66,7 @@ export default class StudentRatings extends Component {
               <Form.Field>
                 <input placeholder="Filter by partner name..."
                        value={ queryPartner }
+                       style={styles.input}
                        onChange={ e => this.setState({ queryPartner: e.target.value }) } />
               </Form.Field>
             </Form>
@@ -101,25 +102,25 @@ export default class StudentRatings extends Component {
 
 const showRating = (rater, rated, rating, date) => {
   if (rating === 1) {
-    return <span style={{fontSize: '15px', color: 'red'}}><b>{ rater }</b> rated <b>{ rated }</b> 1 star on <u>{moment(date).format('LL')}</u></span>
+    return <span style={{color: 'red'}}><b>{ rater }</b> rated <b>{ rated }</b> 1 star on <u>{moment(date).format('LL')}</u></span>
   } else if (rating === 2) {
-    return <span style={{fontSize: '15px', color: 'red'}}><b>{ rater }</b> rated <b>{ rated }</b> 2 stars on <u>{moment(date).format('LL')}</u></span>
+    return <span style={{color: 'red'}}><b>{ rater }</b> rated <b>{ rated }</b> 2 stars on <u>{moment(date).format('LL')}</u></span>
   } else if (rating === 3) {
-    return <span style={{fontSize: '15px'}}><b>{ rater }</b> rated <b>{ rated }</b> 3 star on <u>{moment(date).format('LL')}</u></span>
+    return <span><b>{ rater }</b> rated <b>{ rated }</b> 3 star on <u>{moment(date).format('LL')}</u></span>
   } else if (rating === 4 || rating === 5) {
-    return <span style={{fontSize: '15px', color: 'green'}}><b>{ rater }</b> rated <b>{ rated }</b> {rating} stars on <u>{moment(date).format('LL')}</u></span>
+    return <span style={{color: 'green'}}><b>{ rater }</b> rated <b>{ rated }</b> {rating} stars on <u>{moment(date).format('LL')}</u></span>
   } else {
-    return <span style={{fontSize: '15px'}}>{`No rating from ${ rater } yet`}</span>
+    return <span style={{fontStyle: 'italic'}}>{`No rating from ${ rater } yet`}</span>
   }
 }
 
  const styles = {
   header2: {
     color: '#2185d0',
-    fontSize: '20px',
+    fontSize: '15px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -144,6 +145,12 @@ const showRating = (rater, rated, rating, date) => {
     padding: '2% 5%',
     minHeight: '40px',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontSize: '12px'
   },
+  input: {
+     paddingTop: 0,
+     paddingBottom: 0,
+     height: '20px'
+  }
  }

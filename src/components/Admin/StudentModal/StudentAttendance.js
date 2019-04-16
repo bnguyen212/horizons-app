@@ -26,8 +26,7 @@ export default class StudentAttendance extends Component {
       <Modal.Content scrolling={true} style={ styles.pairsContainer } >
         { attendance.length ? attendance.map(day => {
           return <Segment key={day._id} attached={false} style={ styles.attendance } >
-                   <div style={ styles.weekday } >{ moment(day.date).format('dddd') }</div>
-                   <div style={ styles.date } >{ moment(day.date).format('LL') }</div>
+                   <div style={styles.date} >{moment(day.date).format('dddd, LL') }</div>
                    { day.checkedInBy ? <div style={ styles.description }>Checked in by { day.checkedInBy.user.username }</div> : null}
                  </Segment>
         }) : <h1 style={ styles.warning }>No attendance record found</h1>}
@@ -48,20 +47,15 @@ const styles = {
     padding: '10px',
     margin: '10px 1%',
   },
-  weekday: {
-    color: 'green',
-    fontSize: '20px',
-    fontWeight: 'bold'
-  },
   date: {
     color: 'green',
-    fontSize: '15px',
+    fontSize: '12px',
     fontWeight: 'bold'
   },
   description: {
     textAlign: 'right',
-    paddingTop: '10px',
-    fontSize: '10px',
+    paddingTop: '5px',
+    fontSize: '8px',
     fontStyle: 'italic'
   },
   warning: {

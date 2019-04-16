@@ -142,9 +142,11 @@
 
 ul {
   margin: 0;
+  list-style-position: inside;
+  padding-left: 0;
 }
 
-div div.ui.small.compact.inverted.attached.three.item.nav-bar.menu {
+div div.ui.tiny.compact.inverted.attached.three.item.nav-bar.menu {
   margin: 0 !important;
   width: 100%;
 }

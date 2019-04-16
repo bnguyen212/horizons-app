@@ -25,15 +25,15 @@ export default class StudentPairs extends Component {
 
   showRating = (rater, rating) => {
     if (rating === 1) {
-      return <span style={{fontSize: '12px', color: 'red'}}>{`${ rater.split(' ')[0]} rated 1 star`}</span>
+      return <span style={{fontSize: '10px', color: 'red'}}>{`${ rater.split(' ')[0]} rated 1 star`}</span>
     } else if (rating === 2) {
-      return <span style={{fontSize: '12px', color: 'red'}}>{`${ rater.split(' ')[0]} rated 2 stars`}</span>
+      return <span style={{fontSize: '10px', color: 'red'}}>{`${ rater.split(' ')[0]} rated 2 stars`}</span>
     } else if (rating === 3) {
-      return <span style={{fontSize: '12px'}}>{`${ rater.split(' ')[0]} rated 3 stars`}</span>
+      return <span style={{fontSize: '10px'}}>{`${ rater.split(' ')[0]} rated 3 stars`}</span>
     } else if (rating === 4 || rating === 5) {
-      return <span style={{fontSize: '12px', color: 'green'}}>{`${ rater.split(' ')[0]} rated ${rating} stars`}</span>
+      return <span style={{fontSize: '10px', color: 'green'}}>{`${ rater.split(' ')[0]} rated ${rating} stars`}</span>
     } else {
-      return <span style={{fontSize: '12px'}}>{`No rating from ${ rater.split(' ')[0]} yet`}</span>
+      return <span style={{fontSize: '10px', fontStyle: 'italic'}}>{`No rating from ${ rater.split(' ')[0]} yet`}</span>
     }
   }
 
@@ -58,6 +58,7 @@ export default class StudentPairs extends Component {
             Partner: <Form size="small" style={{ margin: '0 30px' }}>
               <Form.Field>
                 <input placeholder="Filter by partner name..."
+                       style={styles.input}
                        value={ queryPartner }
                        onChange={ e => this.setState({ queryPartner: e.target.value }) } />
               </Form.Field>
@@ -67,6 +68,7 @@ export default class StudentPairs extends Component {
             From: <Form size="small" style={{ margin: '0 30px' }}>
               <Form.Field>
                 <input type="date"
+                       style={styles.input}
                        value={ queryFrom }
                        onChange={ e => this.setState({ queryFrom: e.target.value }) } />
               </Form.Field>
@@ -77,6 +79,7 @@ export default class StudentPairs extends Component {
               <Form.Field>
                 <input type="date"
                        value={ queryTo }
+                       style={styles.input}
                        onChange={ e => this.setState({ queryTo: e.target.value }) } />
               </Form.Field>
             </Form>
@@ -89,8 +92,8 @@ export default class StudentPairs extends Component {
                    <div style={ styles.pairDate } >{ moment(pair.date).format('dddd, l') }</div>
                    <div style={ styles.partnerColumn } >
                    { pair.students.map(student => {
-                      return <div key={student._id} style={{ marginTop: '10px' }}>
-                               <div style={{ fontWeight: 'bold' }}>{ student.name }</div>
+                      return <div key={student._id} style={{ marginTop: '5px' }}>
+                               <div style={{ fontWeight: 'bold', fontSize: '12px' }}>{ student.name }</div>
                                  <ul>
                                    <li>{ student.rated ? this.showRating(student.name, student.rated.rating) : this.showRating(student.name, null) }</li>
                                    <li>{ student.rating ? this.showRating(this.props.name, student.rating.rating) : this.showRating(this.props.name, null) }</li>
@@ -109,10 +112,10 @@ export default class StudentPairs extends Component {
 const styles = {
   header2: {
     color: '#2185d0',
-    fontSize: '20px',
+    fontSize: '15px',
     fontWeight: 'bold',
     width: '100%',
-    minHeight: '50px',
+    minHeight: '40px',
     margin: 0,
     display: 'flex',
     flexDirection: 'row',
@@ -127,14 +130,13 @@ const styles = {
   },
   pairDate: {
     color: 'blue',
-    fontSize: '15px',
+    fontSize: '12px',
     fontWeight: 'bold',
-    marginBottom: '10px'
   },
   pairSub: {
     textAlign: 'left',
-    paddingTop: '20px',
-    fontSize: '15px',
+    paddingTop: '10px',
+    fontSize: '10px',
     fontStyle: 'italic'
   },
   column: {
@@ -153,5 +155,10 @@ const styles = {
   partnerColumn: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  input: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    height: '20px'
   }
 }
