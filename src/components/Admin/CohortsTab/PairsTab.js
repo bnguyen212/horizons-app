@@ -176,7 +176,7 @@ export default class PairsTab extends Component {
     .then(res => res.json())
     .then(result => {
       if (result.success) {
-        console.log(result)
+        // console.log(result)
         this.setState({
           modalCheckOpen: true,
           modalCheckPairs: result.pairs,
