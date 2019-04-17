@@ -8,7 +8,7 @@ const router = express.Router();
 // get record of all previous pairs
 router.get('/history', (req, res) => {
   let pairs;
-  Pair.find({ students: req.user.id },
+  Pair.find({ students: req.user.id, date: {$lt: moment.format("YYYY-MM-DD")} },
     { createdBy: 0, lastModifiedBy: 0 })
     .sort({ date: -1 })
     .populate('students', 'name')
