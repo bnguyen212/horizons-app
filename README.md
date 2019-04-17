@@ -32,12 +32,14 @@ SESSION=ANY_STRING
 
 Type `npm run dev` in the terminal to start running the app locally
 
-## Preview
-![Staff View - Manage student profiles](screenshots/StudentListView.png)
+## Preview - Staff
+![Staff View - Manage student profiles](screenshots/preview1.gif)
 
-![Staff View - Assign partners](screenshots/PairingView.png)
+![Staff View - Check attendance & assign partners](screenshots/preview2.gif)
 
-![Staff View - Cohort attendace](screenshots/AttendanceView.png)
+## Preview - Student
+
+![Student View](screenshots/preview3.gif)
 
 ## Features
 - Student Portal
@@ -67,4 +69,4 @@ Type `npm run dev` in the terminal to start running the app locally
 - __Backend__: Node.js, Express, MongoDB
 
 ## Author
-Brian Nguyen - [website](https://www.briannguyen.dev) | [GitHub](https://github.com/bnguyen212) | [LinkedIn](https://www.linkedin.com/in/brian-trong-nguyen/)
+Brian Nguyen - <a href="https://www.briannguyen.dev" target="_blank">Website</a> | <a href="https://github.com/bnguyen212" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/brian-trong-nguyen/" target="_blank">LinkedIn</a>
