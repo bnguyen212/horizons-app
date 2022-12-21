@@ -2,14 +2,6 @@
 
 https://horizons-app.herokuapp.com/
 
-Login as **Admin**
-- Username: `Lead Instructor`
-- Password: `Apprentice1`
-
-Login as **Student**
-- Name: `Adam Sandler`
-- Password: `Apprentice1`
-
 ## Objective
  Creating a dashboard to enhance productivity & consistency in Horizons bootcamp's daily operations (e.g. manage student profiles, take attendance, assign programming partners, rate partners, etc.)
 

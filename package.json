@@ -4,23 +4,23 @@
   "private": true,
   "proxy": "http://localhost:1337",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
-    "connect-mongo": "^2.0.3",
+    "connect-mongo": "^4.6.0",
     "express": "^4.16.4",
     "express-session": "^1.16.1",
     "moment": "^2.24.0",
     "mongoose": "^5.5.1",
     "morgan": "^1.9.1",
-    "passport": "^0.4.0",
+    "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8",
+    "react-scripts": "^5.0.1",
     "semantic-ui-react": "^0.86.0",
-    "underscore": "^1.9.1",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0"
+    "underscore": "^1.9.1"
   },
   "scripts": {
     "start": "babel-node ./backend/server.js --presets env",
@@ -31,5 +31,17 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

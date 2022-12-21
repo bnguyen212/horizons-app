@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import logger from 'morgan';
 import session from 'express-session';
-import connectMongo from 'connect-mongo';
+import MongoStore from 'connect-mongo';
 import passport from 'passport';
 import { Strategy as LocalStrategy } from 'passport-local';
 import dotenv from 'dotenv';
@@ -14,30 +14,27 @@ import adminRoute from './routes/admin/admin-main';
 
 dotenv.config();
 const app = express();
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
-mongoose.connection.on('connected', () => {
-  console.log('Success: connected to MongoDb!');
-});
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .then(() => {
+    console.log('Success: connected to MongoDb!');
+    app.use(session({
+      secret: process.env.SESSION,
+      store: MongoStore.create({ client: mongoose.connection.getClient() }),
+      // proxy: true,
+      resave: true,
+      saveUninitialized: false,
+      name: 'Horizons-Match',
+      // cookie: { maxAge: 2 * 60 * 60 * 1000 },
+      // rolling: true
+    }));
+    app.use(passport.initialize());
+    app.use(passport.session());
+  });
 
 app.use(express.static(path.resolve(__dirname, '../build')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-const MongoStore = connectMongo(session);
-app.use(session({
-  secret: process.env.SESSION,
-  store: new MongoStore({ mongooseConnection: mongoose.connection }),
-  // proxy: true,
-  resave: true,
-  saveUninitialized: false,
-  name: 'Horizons-Match',
-  // cookie: { maxAge: 2 * 60 * 60 * 1000 },
-  // rolling: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 passport.use('local-admin', new LocalStrategy((username, password, done) => {
   User.findOne({ username, status: 'Active' }, (err, user) => {
